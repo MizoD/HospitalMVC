@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Book an Appointment";
+}
+<style>
+    header {
+        background-color: #004080;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+</style>
+<h2 class="mt-15 mb-4 text-success text-center" >Book an Appointment</h2>
+
+<div class="container">
+    <form asp-action="SubmitBooking" method="post" class="p-4 shadow rounded bg-light">
+        <div class="mb-3">
+            <label for="FirstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="FirstName" name="FirstName" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="LastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="LastName" name="LastName" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="Email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="Email" name="Email" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="Case" class="form-label">Case Description</label>
+            <input type="tel" class="form-control" id="Case" name="Case" required />
+        </div>
+
+        <input type="hidden" name="DoctorId" value="@ViewBag.doctorId" />
+
+
+        <div class="mb-3">
+            <label for="AppointmentDate" class="form-label">Appointment Date</label>
+            <input type="date" class="form-control" id="AppointmentDate" name="AppointmentDate" required />
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
