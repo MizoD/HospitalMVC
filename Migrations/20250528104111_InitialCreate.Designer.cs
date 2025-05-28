@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalMVC.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20250521225006_AddDoctors")]
-    partial class AddDoctors
+    [Migration("20250528104111_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,21 +64,6 @@ namespace HospitalMVC.Migrations
                     b.ToTable("Doctors");
                 });
 
-            modelBuilder.Entity("HospitalMVC.Models.DoctorPatient", b =>
-                {
-                    b.Property<int>("DoctorID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PatientID")
-                        .HasColumnType("int");
-
-                    b.HasKey("DoctorID", "PatientID");
-
-                    b.HasIndex("PatientID");
-
-                    b.ToTable("DoctorPatient");
-                });
-
             modelBuilder.Entity("HospitalMVC.Models.Patient", b =>
                 {
                     b.Property<int>("PatientID")
@@ -93,6 +78,9 @@ namespace HospitalMVC.Migrations
                     b.Property<string>("Case")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DoctorID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -111,10 +99,12 @@ namespace HospitalMVC.Migrations
 
                     b.HasKey("PatientID");
 
+                    b.HasIndex("DoctorID");
+
                     b.ToTable("Patients");
                 });
 
-            modelBuilder.Entity("HospitalMVC.Models.DoctorPatient", b =>
+            modelBuilder.Entity("HospitalMVC.Models.Patient", b =>
                 {
                     b.HasOne("HospitalMVC.Models.Doctor", "Doctor")
                         .WithMany("Patients")
@@ -122,25 +112,12 @@ namespace HospitalMVC.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HospitalMVC.Models.Patient", "Patient")
-                        .WithMany("Doctors")
-                        .HasForeignKey("PatientID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Doctor");
-
-                    b.Navigation("Patient");
                 });
 
             modelBuilder.Entity("HospitalMVC.Models.Doctor", b =>
                 {
                     b.Navigation("Patients");
-                });
-
-            modelBuilder.Entity("HospitalMVC.Models.Patient", b =>
-                {
-                    b.Navigation("Doctors");
                 });
 #pragma warning restore 612, 618
         }

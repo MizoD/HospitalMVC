@@ -19,4 +19,5 @@ namespace HospitalMVC.Migrations
             migrationBuilder.DropTable("Doctors");
         }
     }
+
 }

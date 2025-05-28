@@ -10,7 +10,7 @@
         public string Image { get; set; } = string.Empty;
         public int Age { get; set; }
         public bool Avilable { get; set; }
-        public virtual ICollection<DoctorPatient> Patients { get; set; } = new List<DoctorPatient>();
+        public virtual ICollection<Patient> Patients { get; set; } = new List<Patient>();
 
     }
 }

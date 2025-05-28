@@ -14,7 +14,6 @@ namespace HospitalMVC.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<DoctorPatient>().HasKey(e => new {e.DoctorID, e.PatientID });
 
         }
     }

@@ -8,8 +8,10 @@
         public string Email { get; set; } = string.Empty;
         public string Case { get; set; } = string.Empty;
         public int Age { get; set; }
+        public int DoctorID { get; set; }
+        public Doctor Doctor { get; set; } = null!;
         public DateTime FirstDate { get; set; } = DateTime.Now;
-        public virtual ICollection<DoctorPatient> Doctors { get; set; } = new List<DoctorPatient>();
+        
 
     }
 }
